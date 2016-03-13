@@ -1,11 +1,15 @@
 from django.db import models
 from django.utils import timezone
 # Create your models here.
+class Subject(models.Model):
+    description = models.CharField(max_length=80)
+
 
 class Post(models.Model):
     author = models.ForeignKey('auth.User')
     title = models.CharField(max_length=200)
     text = models.TextField()
+    subject = models.ForeignKey(Subject)
     created_date = models.DateTimeField(
             default=timezone.now)
     published_date = models.DateTimeField(
